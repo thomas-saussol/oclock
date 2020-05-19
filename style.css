@@ -135,6 +135,22 @@ nav {
     align-items: center;
 }
 
+.ccdValue {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#cdValue {
+    margin: 0 0 24px 0;
+    font-size: 34px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #horloge {
     margin: 0;
 }
@@ -286,6 +302,16 @@ nav {
 }
 
 .stopit {
+    margin-left: 5px;
+    border: 2px solid white;
+    background-color: unset;
+    color: #ea225a;
+    height: 40px;
+    width: 124px;
+    border-radius: 50px;
+}
+
+.btnResetCd {
     margin-left: 5px;
     border: 2px solid white;
     background-color: unset;

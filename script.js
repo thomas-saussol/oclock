@@ -5,6 +5,8 @@ $(document).ready(function () {
     $(".hms").css("width", horlogeWidth);
 
     $("#ccountdown").hide();
+    $("#alarmList").hide();
+    $("#calarm").hide();
 
     $("#navhorloge").click(function() {
         $("#imghorloge").attr("src", "img/horloge.png");
@@ -17,6 +19,8 @@ $(document).ready(function () {
         $("#pchrono").css("color", "#454545");
         $("#chorloge").show();
         $("#ccountdown").hide();
+        $("#alarmList").hide();
+        $("#calarm").hide();
     })
 
     $("#navcountdown").click(function() {
@@ -30,6 +34,8 @@ $(document).ready(function () {
         $("#pchrono").css("color", "#454545");
         $("#chorloge").hide();
         $("#ccountdown").show();
+        $("#alarmList").hide();
+        $("#calarm").hide();
     })
     
     $("#navreveil").click(function() {
@@ -42,7 +48,9 @@ $(document).ready(function () {
         $("#imgchrono").attr("src", "img/chrono0.png");
         $("#pchrono").css("color", "#454545");
         $("#chorloge").hide();
+        $("#calarm").show();
         $("#ccountdown").hide();
+        $("#alarmList").show();
     })
 
     $("#navchrono").click(function() {
@@ -56,6 +64,8 @@ $(document).ready(function () {
         $("#pchrono").css("color", "#ea225a");
         $("#chorloge").hide();
         $("#ccountdown").hide();
+        $("#calarm").hide();
+        $("#alarmList").hide();
     })
 
     function horloge() {
@@ -263,6 +273,94 @@ $(document).ready(function () {
         else {
             alert("Merci de remplir tous les champs.");
         }
+    })
+
+    // Countdown
+
+    intervalCd = null;
+
+    function initCd() {
+
+        if ( $("#cdheures").val() < 10 ) {
+            hoursDisplay = "0"+$("#cdheures").val();
+        }
+        else {
+            hoursDisplay = $("#cdheures").val();
+        }
+        if ( $("#cdminutes").val() < 10 ) {
+            minutesDisplay = "0"+$("#cdminutes").val();
+        }
+        else {
+            minutesDisplay = $("#cdminutes").val();
+        }
+        if ( $("#cdsecondes").val() < 10 ) {
+            secondsDisplay = "0"+$("#cdsecondes").val();
+        }
+        else {
+            secondsDisplay = $("#cdsecondes").val();
+        }
+
+        $("#ccountdown").hide();
+        $(".cwatch").append("<section class='ccdValue'><p id='cdValue'>"+hoursDisplay+":"+minutesDisplay+":"+secondsDisplay+"</p><button class='btnResetCd'>Reset</button></section>");
+        const startingHours = parseInt($("#cdheures").val());
+        const startingMinutes = parseInt($("#cdminutes").val());
+        const startingSeconds = parseInt($("#cdsecondes").val());
+
+        let time = startingHours * 3600 + startingMinutes * 60 + startingSeconds;
+
+        // console.log(startingHours, startingMinutes*60, startingSeconds, time);
+
+        intervalCd = setInterval(function() {
+            updateCd(time);
+        }, 1000);
+    }
+
+    var first = true;
+
+    function updateCd(time) {
+
+        // console.log(time);
+        if ( first == true ) {
+            time2 = time;
+        }
+        first = false;
+        var hours = Math.floor(time2 / 3600);
+        var minutes = Math.floor(time2 / 60 % 60);
+        var seconds = time2 % 60;
+        // console.log(hours, minutes, seconds);
+        if ( hours < 10 ) {
+            hours = "0"+hours;
+        }
+        if ( minutes < 10 ) {
+            minutes = "0"+minutes;
+        }
+        if ( seconds < 10 ) {
+            seconds = "0"+seconds;
+        }
+
+        $("#cdValue").html(`${hours}:${minutes}:${seconds}`);
+        time2--;
+
+    }
+
+    function resetCd() {
+
+        first = true;
+        clearInterval(intervalCd);
+        $(".ccdValue").remove();
+        $("#ccountdown").show();
+        $("#cdheures").val(0);
+        $("#cdminutes").val(0);
+        $("#cdsecondes").val(0);
+
+    }
+
+    $("#cdbtn").click(function() {
+        initCd();
+    })
+
+    $(document).on("click", ".btnResetCd", function() {
+        resetCd();
     })
         
 })
