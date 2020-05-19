@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Titre de la page</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.4.1.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <main>
+        <nav>
+            <div id="navhorloge" class="navrow">
+                <img id="imghorloge" src="img/horloge.png" alt="horloge" /><p id="phorloge">Horloge</p>
+            </div>
+            <div id="navcountdown" class="navrow">
+                <img id="imgcountdown" src="img/countdown0.png" alt="countdown" /><p id="pcountdown">Countdown</p>
+            </div>
+            <div id="navreveil" class="navrow">
+                <img id="imgreveil" src="img/reveil0.png" alt="reveil" /><p id="preveil">Réveil</p>
+            </div>
+            <div id="navchrono" class="navrow">
+                <img id="imgchrono" src="img/chrono0.png" alt="chrono" /><p id="pchrono">Chronomètre</p>
+            </div>
+        </nav>
+        <section class="cwatch">
+            <article id="chorloge">
+                <h1 class="title1">Horloge</h1>
+                <p id="horloge"></p>
+                <article class="hms">
+                    <p>heures</p>
+                    <p>minutes</p>
+                    <p>secondes</p>
+                </article>
+            </article>
+            <section id="ccountdown">
+                <h1 class="title1">Choisissez une valeur</h1>
+                <section class="cform">
+                    <article class="ccases">
+                        <img src="img/arrowup.png" id="uph" class="up" alt="up">
+                        <input type="text" id="cdheures" class="cdform" value="0" />
+                        <img src="img/arrowdown.png" id="downh" class="down" alt="down">
+                    </article>
+                    <p> heures </p>
+                    <article class="ccases">
+                        <img src="img/arrowup.png" id="upm" class="up" alt="up">
+                        <input type="text" id="cdminutes" class="cdform" value="0" />
+                        <img src="img/arrowdown.png" id="downm" class="down" alt="down">
+                    </article>
+                    <p> minutes </p>
+                    <article class="ccases">
+                        <img src="img/arrowup.png" id="ups" class="up" alt="up">
+                        <input type="text" id="cdsecondes" class="cdform" value="0" />
+                        <img src="img/arrowdown.png" id="downs" class="down" alt="down">
+                    </article>
+                    <p> secondes </p>
+                </section>
+                <input type="button" id="cdbtn" value="GO" />
+            </section>
+            <section id="calarm">
+                <h1 class="title1">Créer une alarme</h1>
+                <input type="text" name="alarmTitle" id="alarmTitle" placeholder="Titre de l'alarme" />
+                <section class="cform">
+                    <input type="datetime-local" name="datepicker" id="datepicker" class="unstyled" />
+                </section>
+                <input type="button" id="alarmbtn" value="Créer" />
+            </section>
+        </section>
+        <section class="features">
+            <section id="alarmList">
+                <h1 class="title1">Mes alarmes</h1>
+                <p id="noAlarm">Aucune alarme paramétrée.</p>
+            </section>
+        </section>
+    </main>
+</body>
+</html>
