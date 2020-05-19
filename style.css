@@ -70,6 +70,27 @@ nav {
     align-items: center;
 }
 
+#tourList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tourStyle {
+    color: white;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+#noTour {
+    color: grey;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
 #noAlarm {
     color: grey;
     font-size: 16px;
@@ -144,6 +165,22 @@ nav {
     align-items: center;
 }
 
+#cchrono {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#chronotime {
+    margin: 0 0 24px 0;
+    font-size: 34px;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 #cdValue {
     margin: 0 0 24px 0;
     font-size: 34px;
@@ -202,6 +239,39 @@ nav {
 }
 
 #cdbtn {
+    width: 164px;
+    height: 44px;
+    background-color: #454545;
+    border: 2px solid #262626;
+    color: #ea225a;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 24px;
+}
+
+#btnChronoStart {
+    width: 164px;
+    height: 44px;
+    background-color: #454545;
+    border: 2px solid #262626;
+    color: #ea225a;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 24px;
+}
+
+#btnChronoReset {
+    width: 164px;
+    height: 44px;
+    background-color: #454545;
+    border: 2px solid #262626;
+    color: #ea225a;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 24px;
+}
+
+#btnChronoTour {
     width: 164px;
     height: 44px;
     background-color: #454545;

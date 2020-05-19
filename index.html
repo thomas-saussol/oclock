@@ -57,6 +57,14 @@
                 </section>
                 <input type="button" id="cdbtn" value="GO" />
             </section>
+            <section id="cchrono">
+                <span id="chronotime">0:00:00:00</span>
+                <form name="chronoForm">
+                    <input id="btnChronoStart" type="button" name="startstop" value="start!" />
+                    <input id="btnChronoReset" type="button" name="reset" value="reset!" />
+                    <input id="btnChronoTour" type="button" name="tours" value="Tour">
+                </form>
+            </section>
             <section id="calarm">
                 <h1 class="title1">Créer une alarme</h1>
                 <input type="text" name="alarmTitle" id="alarmTitle" placeholder="Titre de l'alarme" />
@@ -70,6 +78,11 @@
             <section id="alarmList">
                 <h1 class="title1">Mes alarmes</h1>
                 <p id="noAlarm">Aucune alarme paramétrée.</p>
+            </section>
+            <section id="ctourList">
+                <h1 class="title1">Mes tours</h1>
+                <p id="noTour">Aucun tour enregistré.</p>
+                <article id="tourList"></article>
             </section>
         </section>
     </main>

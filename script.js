@@ -7,6 +7,8 @@ $(document).ready(function () {
     $("#ccountdown").hide();
     $("#alarmList").hide();
     $("#calarm").hide();
+    $("#cchrono").hide();
+    $("#ctourList").hide();
 
     $("#navhorloge").click(function() {
         $("#imghorloge").attr("src", "img/horloge.png");
@@ -21,6 +23,8 @@ $(document).ready(function () {
         $("#ccountdown").hide();
         $("#alarmList").hide();
         $("#calarm").hide();
+        $("#cchrono").hide();
+        $("#ctourList").hide();
     })
 
     $("#navcountdown").click(function() {
@@ -36,6 +40,8 @@ $(document).ready(function () {
         $("#ccountdown").show();
         $("#alarmList").hide();
         $("#calarm").hide();
+        $("#cchrono").hide();
+        $("#ctourList").hide();
     })
     
     $("#navreveil").click(function() {
@@ -51,6 +57,8 @@ $(document).ready(function () {
         $("#calarm").show();
         $("#ccountdown").hide();
         $("#alarmList").show();
+        $("#cchrono").hide();
+        $("#ctourList").hide();
     })
 
     $("#navchrono").click(function() {
@@ -66,6 +74,8 @@ $(document).ready(function () {
         $("#ccountdown").hide();
         $("#calarm").hide();
         $("#alarmList").hide();
+        $("#cchrono").show();
+        $("#ctourList").show();
     })
 
     function horloge() {
@@ -125,14 +135,6 @@ $(document).ready(function () {
             $("#horloge").html(affichage);
 
         }, 1000);
-    }
-
-    function countdown() {
-
-        $("#navreveil").click(function() {
-
-        })
-
     }
 
     $("#ups").click(function() {
@@ -252,7 +254,7 @@ $(document).ready(function () {
         setTimeout(function() {
             alarmSound.play();
             $("main").append('<section class="calarmPop"><section class="alarmPop"><article class="alarmPopContent"><h1 class="title1">Repeat</h1><section class="cBtnPopup"><button class="snooze">Snooze(10min)</button><button class="stopit">Stop</button></section></article></section></section>');
-        }, 3000);
+        }, 600000);
     }
 
     $(document).on('click', '.snooze', function(){ 
@@ -362,5 +364,138 @@ $(document).ready(function () {
     $(document).on("click", ".btnResetCd", function() {
         resetCd();
     })
-        
+
+    // CHRONO
+
+    var started = false;
+    var needContinue = false;
+    var startTime = 0;
+    var start = 0;
+    var end = 0;
+    var difference = 0;
+    var timerID = 0;
+    var storage = [];
+
+    function chrono()
+    {
+        end = new Date();
+        difference = end - start;
+        difference = new Date(difference);
+        var msec = difference.getMilliseconds();
+        var sec = difference.getSeconds();
+        var min = difference.getMinutes();
+        var hr = difference.getHours() - 1;
+        if (min < 10)
+        {
+            min = "0" + min;
+        }
+        if (sec < 10)
+        {
+            sec = "0" + sec;
+        }
+        if (msec < 10)
+        {
+            msec = "00" + msec;
+        } else if (msec < 100)
+        {
+            msec = "0" + msec;
+        }
+        document.getElementById("chronotime").innerHTML = hr + ":" + min + ":" + sec + ":" + msec;
+        timerID = setTimeout(function() {
+            chrono();
+        }, 10);
+    }
+
+    function chronoStart()
+    {
+        started = true;
+        document.chronoForm.startstop.value = "stop!";
+        start = new Date();
+        chrono();
+    }
+
+    function chronoContinue()
+    {
+        started = true;
+        document.chronoForm.startstop.value = "stop!";
+        start = new Date() - difference;
+        start = new Date(start);
+        chrono();
+    }
+
+    function chronoReset()
+    {
+        $("#tourList").empty();
+        $("#noTour").show();
+        storage = [];
+        started = true;
+        needContinue = false;
+        document.getElementById("chronotime").innerHTML = "0:00:00:000";
+        start = new Date()
+    }
+
+    function chronoStopReset()
+    {
+        $("#tourList").empty();
+        $("#noTour").show();
+        storage = [];
+        started = false;
+        needContinue = false;
+        document.getElementById("chronotime").innerHTML = "0:00:00:000";
+    }
+
+    function chronoStop()
+    {
+        started = false;
+        needContinue = true;
+        document.chronoForm.startstop.value = "start!";
+        clearTimeout(timerID)
+    }
+
+    function valuestore()
+    {
+        var chronostore = document.getElementById('chronotime').textContent;
+
+        storage.push(chronostore);
+        console.log(storage);
+
+        document.getElementById('tourList').innerHTML = '';
+        $("#noTour").hide();
+
+        for (var i = 0; i < storage.length; i++)
+        {
+            j = i + 1;
+            document.getElementById('tourList').innerHTML +='<p class="tourStyle">'+j+' : '+storage[i]+'</p><br />';
+        }
+    }
+
+    $(document).on("click", "#btnChronoStart", function() {
+        console.log(started);
+        if ( started == false ) {
+            if ( needContinue == false ) {
+                chronoStart();
+            }
+            else {
+                chronoContinue();
+            }
+        }
+        else {
+            chronoStop();
+        }
+    })
+
+    $(document).on("click", "#btnChronoReset", function() {
+        if ( started == false ) {
+            chronoStopReset();
+        }
+        else {
+            chronoReset();
+        }
+    })
+
+    $(document).on("click", "#btnChronoTour", function() {
+        console.log(started);
+        valuestore();
+    })
+
 })
